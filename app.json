@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "歌觅 GoWithMe",
+    "slug": "gowithme-ios",
+    "scheme": "gowithme",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gowithme.app"
+    }
+  }
+}
