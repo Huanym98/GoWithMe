@@ -16,7 +16,8 @@
     "dev:one:native": "bash scripts/sync-and-run.sh native",
     "devone": "bash scripts/sync-and-run.sh web",
     "one": "bash scripts/sync-and-run.sh web",
-    "one:native": "bash scripts/sync-and-run.sh native"
+    "one:native": "bash scripts/sync-and-run.sh native",
+    "version:check": "bash scripts/version-check.sh"
   },
   "dependencies": {
     "expo": "~52.0.46",

@@ -49,3 +49,12 @@ npm run dev:one:native
 
 
 兼容别名（如果终端或历史命令不方便带冒号）：`npm run devone`、`npm run one`。
+
+## 最新版本核对（推荐）
+
+```bash
+npm run version:check
+```
+
+该命令会输出：当前分支、本地 commit、远端 commit、是否落后远端、工作区是否有未提交改动。
+
