@@ -1,31 +1,64 @@
+import { Link } from 'expo-router';
+import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ParticleLogo } from '@/components/particle-logo';
 
-const agreementLines = ['我已阅读并同意《用户协议》《隐私政策》', '《儿童/青少年个人信息保护规则》'];
+const copy = {
+  zh: {
+    lang: '中文',
+    title: 'Go With Me',
+    wechat: '微信登录',
+    apple: '通过 Apple 登录',
+    other: '其他登录方式',
+    qq: 'QQ登录',
+    phone: '手机号登录',
+    agreePrefix: '我已阅读并同意',
+    user: '《用户协议》',
+    privacy: '《隐私政策》',
+    child: '《儿童/青少年个人信息保护规则》'
+  },
+  en: {
+    lang: 'EN',
+    title: 'Go With Me',
+    wechat: 'WeChat Sign In',
+    apple: 'Sign in with Apple',
+    other: 'Other sign in methods',
+    qq: 'QQ',
+    phone: 'Phone',
+    agreePrefix: 'I agree to',
+    user: 'User Agreement',
+    privacy: 'Privacy Policy',
+    child: 'Children/Teen Info Policy'
+  }
+} as const;
 
 export default function LoginScreen() {
+  const [lang, setLang] = useState<'zh' | 'en'>('zh');
+  const t = copy[lang];
+
   return (
     <SafeAreaView style={styles.outer}>
       <View style={styles.card}>
-        <TouchableOpacity style={styles.langChip}>
-          <Text style={styles.langText}>中文 ⌄</Text>
+        <TouchableOpacity style={styles.langChip} onPress={() => setLang((l) => (l === 'zh' ? 'en' : 'zh'))}>
+          <Text style={styles.langText}>{t.lang} ⌄</Text>
         </TouchableOpacity>
 
         <View style={styles.brandWrap}>
-          <Text style={styles.brand}>Go With Me</Text>
+          <ParticleLogo title={t.title} />
         </View>
 
         <View style={styles.actionsWrap}>
           <TouchableOpacity style={styles.wechatBtn}>
-            <Text style={styles.wechatText}>◍ 微信登录</Text>
+            <Text style={styles.wechatText}>💬 {t.wechat}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.appleBtn}>
-            <Text style={styles.appleText}>◐ 通过 Apple 登录</Text>
+            <Text style={styles.appleText}> {t.apple}</Text>
           </TouchableOpacity>
 
           <View style={styles.otherWrap}>
-            <Text style={styles.otherText}>其他登录方式 ⌃</Text>
+            <Text style={styles.otherText}>{t.other} ⌃</Text>
           </View>
 
           <View style={styles.quickLoginRow}>
@@ -33,14 +66,14 @@ export default function LoginScreen() {
               <TouchableOpacity style={styles.qqBtn}>
                 <Text style={styles.qqIcon}>🐧</Text>
               </TouchableOpacity>
-              <Text style={styles.quickLabel}>QQ登录</Text>
+              <Text style={styles.quickLabel}>{t.qq}</Text>
             </View>
 
             <View style={styles.quickLoginItem}>
               <TouchableOpacity style={styles.phoneBtn}>
-                <Text style={styles.phoneIcon}>▯</Text>
+                <Text style={styles.phoneIcon}>⌁</Text>
               </TouchableOpacity>
-              <Text style={styles.quickLabel}>手机号登录</Text>
+              <Text style={styles.quickLabel}>{t.phone}</Text>
             </View>
           </View>
         </View>
@@ -48,9 +81,12 @@ export default function LoginScreen() {
         <View style={styles.agreementWrap}>
           <Text style={styles.agreeCircle}>◯</Text>
           <View style={styles.agreementTextGroup}>
-            {agreementLines.map((line) => (
-              <Text key={line} style={styles.agreementText}>{line}</Text>
-            ))}
+            <Text style={styles.agreementText}>{t.agreePrefix} </Text>
+            <View style={styles.linksRow}>
+              <Link href="/agreements/user" style={styles.agreementLink}>{t.user}</Link>
+              <Link href="/agreements/privacy" style={styles.agreementLink}>{t.privacy}</Link>
+            </View>
+            <Link href="/agreements/child" style={styles.agreementLink}>{t.child}</Link>
           </View>
         </View>
       </View>
@@ -59,11 +95,7 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  outer: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    padding: 16
-  },
+  outer: { flex: 1, backgroundColor: '#FFFFFF', padding: 16 },
   card: {
     flex: 1,
     borderRadius: 22,
@@ -82,25 +114,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     justifyContent: 'center'
   },
-  langText: {
-    fontSize: 21,
-    color: '#111'
-  },
-  brandWrap: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  brand: {
-    fontSize: 38,
-    lineHeight: 41,
-    fontWeight: '800',
-    letterSpacing: 0.4,
-    color: '#1F2346'
-  },
-  actionsWrap: {
-    gap: 14
-  },
+  langText: { fontSize: 21, color: '#111' },
+  brandWrap: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  actionsWrap: { gap: 14 },
   wechatBtn: {
     height: 78,
     borderRadius: 40,
@@ -108,11 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  wechatText: {
-    fontSize: 22,
-    color: '#EAF9EF',
-    fontWeight: '600'
-  },
+  wechatText: { fontSize: 22, color: '#EAF9EF', fontWeight: '600' },
   appleBtn: {
     height: 78,
     borderRadius: 40,
@@ -122,30 +134,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  appleText: {
-    fontSize: 22,
-    color: '#7F7F7F',
-    fontWeight: '600'
-  },
-  otherWrap: {
-    marginTop: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  otherText: {
-    fontSize: 22,
-    color: '#7D7D7D'
-  },
-  quickLoginRow: {
-    marginTop: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 30
-  },
-  quickLoginItem: {
-    alignItems: 'center',
-    gap: 8
-  },
+  appleText: { fontSize: 22, color: '#7F7F7F', fontWeight: '600' },
+  otherWrap: { marginTop: 10, alignItems: 'center', justifyContent: 'center' },
+  otherText: { fontSize: 22, color: '#7D7D7D' },
+  quickLoginRow: { marginTop: 4, flexDirection: 'row', justifyContent: 'center', gap: 30 },
+  quickLoginItem: { alignItems: 'center', gap: 8 },
   qqBtn: {
     height: 84,
     width: 84,
@@ -164,34 +157,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  qqIcon: {
-    fontSize: 34
-  },
-  phoneIcon: {
-    fontSize: 34,
-    color: '#fff'
-  },
-  quickLabel: {
-    fontSize: 18,
-    color: '#B2B2B2'
-  },
-  agreementWrap: {
-    marginTop: 18,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 10
-  },
-  agreeCircle: {
-    fontSize: 34,
-    color: '#767676',
-    lineHeight: 34
-  },
-  agreementTextGroup: {
-    flex: 1
-  },
-  agreementText: {
+  qqIcon: { fontSize: 34 },
+  phoneIcon: { fontSize: 34, color: '#fff' },
+  quickLabel: { fontSize: 18, color: '#B2B2B2' },
+  agreementWrap: { marginTop: 18, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
+  agreeCircle: { fontSize: 34, color: '#767676', lineHeight: 34 },
+  agreementTextGroup: { flex: 1 },
+  agreementText: { fontSize: 18, lineHeight: 26, color: '#444' },
+  linksRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 },
+  agreementLink: {
     fontSize: 18,
     lineHeight: 30,
-    color: '#444'
+    color: '#2F4858',
+    textDecorationLine: 'underline',
+    marginRight: 6
   }
 });
