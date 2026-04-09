@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "dev:web": "expo start --web --clear",
     "dev:native": "expo start --clear",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postinstall": "node scripts/repair-login.js"
   },
   "dependencies": {
     "expo": "~52.0.46",
