@@ -1,5 +1,3 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -8,8 +6,7 @@ export default function LoginScreen() {
     <SafeAreaView style={styles.outer}>
       <View style={styles.card}>
         <TouchableOpacity style={styles.langChip}>
-          <Text style={styles.langText}>中文</Text>
-          <Ionicons name="chevron-down" size={22} color="#111" />
+          <Text style={styles.langText}>中文 ⌄</Text>
         </TouchableOpacity>
 
         <View style={styles.brandWrap}>
@@ -18,18 +15,15 @@ export default function LoginScreen() {
 
         <View style={styles.actionsWrap}>
           <TouchableOpacity style={styles.wechatBtn}>
-            <Ionicons name="logo-wechat" size={25} color="#FFFFFF" />
-            <Text style={styles.wechatText}>微信登录</Text>
+            <Text style={styles.wechatText}>◍ 微信登录</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.appleBtn}>
-            <Ionicons name="logo-apple" size={30} color="#8C8C8C" />
-            <Text style={styles.appleText}>通过 Apple 登录</Text>
+            <Text style={styles.appleText}>◐ 通过 Apple 登录</Text>
           </TouchableOpacity>
 
           <View style={styles.otherWrap}>
-            <Text style={styles.otherText}>其他登录方式</Text>
-            <Ionicons name="chevron-up" size={20} color="#767676" />
+            <Text style={styles.otherText}>其他登录方式 ⌃</Text>
           </View>
 
           <View style={styles.quickLoginRow}>
@@ -42,7 +36,7 @@ export default function LoginScreen() {
 
             <View style={styles.quickLoginItem}>
               <TouchableOpacity style={styles.phoneBtn}>
-                <FontAwesome name="mobile-phone" size={34} color="#FFFFFF" />
+                <Text style={styles.phoneIcon}>▯</Text>
               </TouchableOpacity>
               <Text style={styles.quickLabel}>手机号登录</Text>
             </View>
@@ -50,7 +44,7 @@ export default function LoginScreen() {
         </View>
 
         <View style={styles.agreementWrap}>
-          <Ionicons name="ellipse-outline" size={50} color="#767676" />
+          <Text style={styles.agreeCircle}>◯</Text>
           <Text style={styles.agreementText}>
             我已阅读并同意《用户协议》《隐私政策》{'
 '}《儿童/青少年个人信息保护规则》
@@ -83,12 +77,10 @@ const styles = StyleSheet.create({
     borderRadius: 29,
     backgroundColor: '#EFEFEF',
     paddingHorizontal: 24,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12
+    justifyContent: 'center'
   },
   langText: {
-    fontSize: 42 / 2,
+    fontSize: 21,
     color: '#111'
   },
   brandWrap: {
@@ -97,8 +89,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   brand: {
-    fontSize: 76 / 2,
-    lineHeight: 82 / 2,
+    fontSize: 38,
+    lineHeight: 41,
     fontWeight: '800',
     letterSpacing: 0.4,
     color: '#1F2346'
@@ -110,10 +102,8 @@ const styles = StyleSheet.create({
     height: 78,
     borderRadius: 40,
     backgroundColor: '#8DCEAA',
-    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    gap: 14
+    alignItems: 'center'
   },
   wechatText: {
     fontSize: 22,
@@ -126,10 +116,8 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
     borderWidth: 1,
     backgroundColor: '#F7F7F7',
-    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    gap: 12
+    alignItems: 'center'
   },
   appleText: {
     fontSize: 22,
@@ -138,10 +126,8 @@ const styles = StyleSheet.create({
   },
   otherWrap: {
     marginTop: 10,
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8
+    justifyContent: 'center'
   },
   otherText: {
     fontSize: 22,
@@ -178,6 +164,10 @@ const styles = StyleSheet.create({
   qqIcon: {
     fontSize: 34
   },
+  phoneIcon: {
+    fontSize: 34,
+    color: '#fff'
+  },
   quickLabel: {
     fontSize: 18,
     color: '#B2B2B2'
@@ -187,6 +177,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: 10
+  },
+  agreeCircle: {
+    fontSize: 34,
+    color: '#767676',
+    lineHeight: 34
   },
   agreementText: {
     flex: 1,

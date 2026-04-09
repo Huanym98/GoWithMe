@@ -1,5 +1,13 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
+import { Text } from 'react-native';
+
+const iconMap: Record<string, string> = {
+  home: '⌂',
+  discover: '◉',
+  publish: '+',
+  inbox: '✉',
+  profile: '◌'
+};
 
 export default function TabLayout() {
   return (
@@ -9,16 +17,9 @@ export default function TabLayout() {
         tabBarActiveTintColor: '#FF6B57',
         tabBarInactiveTintColor: '#9CA3AF',
         tabBarStyle: { height: 84, paddingTop: 8 },
-        tabBarIcon: ({ color, size }) => {
-          const map: Record<string, keyof typeof Ionicons.glyphMap> = {
-            home: 'home-outline',
-            discover: 'search-outline',
-            publish: 'add-circle-outline',
-            inbox: 'chatbubble-ellipses-outline',
-            profile: 'person-outline'
-          };
-          return <Ionicons name={map[route.name] ?? 'ellipse-outline'} size={size} color={color} />;
-        }
+        tabBarIcon: ({ color }) => (
+          <Text style={{ color, fontSize: 18, marginBottom: -2 }}>{iconMap[route.name] ?? '·'}</Text>
+        )
       })}
     >
       <Tabs.Screen name="home" options={{ title: '首页' }} />
