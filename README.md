@@ -1,5 +1,12 @@
 # GoWithMe iOS (Expo)
 
+
+## 版本信息
+
+- 当前版本：`v0.1.0-mvp`
+- 最近更新：`2026-04-09 (UTC)`
+- 建议核对：执行 `git rev-parse --short HEAD` 查看本地提交哈希，确认是否为最新。
+
 基于你提供的网页端与设计说明书，已落地为可运行的 iOS 优先移动端骨架应用（Expo + React Native + TypeScript）。
 
 ## 已完成模块（MVP）
