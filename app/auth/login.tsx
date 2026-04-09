@@ -1,6 +1,8 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+const agreementLines = ['我已阅读并同意《用户协议》《隐私政策》', '《儿童/青少年个人信息保护规则》'];
+
 export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.outer}>
@@ -46,8 +48,9 @@ export default function LoginScreen() {
         <View style={styles.agreementWrap}>
           <Text style={styles.agreeCircle}>◯</Text>
           <View style={styles.agreementTextGroup}>
-            <Text style={styles.agreementText}>我已阅读并同意《用户协议》《隐私政策》</Text>
-            <Text style={styles.agreementText}>《儿童/青少年个人信息保护规则》</Text>
+            {agreementLines.map((line) => (
+              <Text key={line} style={styles.agreementText}>{line}</Text>
+            ))}
           </View>
         </View>
       </View>
