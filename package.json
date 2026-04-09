@@ -13,7 +13,10 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "node scripts/repair-login.js",
     "dev:one": "bash scripts/sync-and-run.sh web",
-    "dev:one:native": "bash scripts/sync-and-run.sh native"
+    "dev:one:native": "bash scripts/sync-and-run.sh native",
+    "devone": "bash scripts/sync-and-run.sh web",
+    "one": "bash scripts/sync-and-run.sh web",
+    "one:native": "bash scripts/sync-and-run.sh native"
   },
   "dependencies": {
     "expo": "~52.0.46",

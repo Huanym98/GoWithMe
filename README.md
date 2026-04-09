@@ -40,3 +40,5 @@ npm run dev:one
 npm run dev:one:native
 ```
 
+
+兼容别名（如果终端或历史命令不方便带冒号）：`npm run devone`、`npm run one`。
