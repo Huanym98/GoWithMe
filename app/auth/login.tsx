@@ -45,9 +45,10 @@ export default function LoginScreen() {
 
         <View style={styles.agreementWrap}>
           <Text style={styles.agreeCircle}>◯</Text>
-          <Text style={styles.agreementText}>
-            我已阅读并同意《用户协议》《隐私政策》{"\n"}《儿童/青少年个人信息保护规则》
-          </Text>
+          <View style={styles.agreementTextGroup}>
+            <Text style={styles.agreementText}>我已阅读并同意《用户协议》《隐私政策》</Text>
+            <Text style={styles.agreementText}>《儿童/青少年个人信息保护规则》</Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -182,8 +183,10 @@ const styles = StyleSheet.create({
     color: '#767676',
     lineHeight: 34
   },
+  agreementTextGroup: {
+    flex: 1
+  },
   agreementText: {
-    flex: 1,
     fontSize: 18,
     lineHeight: 30,
     color: '#444'
